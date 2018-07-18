@@ -1,12 +1,13 @@
 // Enemies our player must avoid
 class Enemy {
-  constructor() {
+  constructor(x, y) {
     this.sprite = "images/enemy-bug.png";
-    this.x = 0;
-    this.y = 275;
+    this.x = x;
+    this.y = y;
   }
 
   update(dt) {
+    //
 
   }
 
@@ -36,22 +37,27 @@ class Player {
 
 //Move player depending on keypresses
   handleInput(input) {
-    if (this.x <= 300 || this.x >= 0 || this.y <= 300 || this.y >= 0) {
-      if (input === "left") {
+    if (input === "left") {
+      if (this.x >= 100) {
         this.x -= 100;
-        console.log(this.x, this.y);
-      } else if (input === "right") {
+      }
+    } else if (input === "right") {
+      if (this.x <= 300) {
         this.x += 100;
-        console.log(this.x, this.y);
-      } else if (input === "down") {
+      }
+    } else if (input === "down") {
+      if (this.y <= 315) {
         this.y += 85;
-        console.log(this.x, this.y);
-      } else {
+      }
+    } else if (input === "up") {
+      if (this.y >= 145) {
         this.y -= 85;
-        console.log(this.x, this.y);
+      }
+      else if (this.y < 145) {
+        this.x = 200;
+        this.y = 400;
       }
     }
-    else {console.log("false")};
   }
 }
 
@@ -68,8 +74,8 @@ document.addEventListener('keyup', function(e) {
 });
 
 let player = new Player();
-let enemy1 = new Enemy();
-let enemy2 = new Enemy();
-let enemy3 = new Enemy();
+let enemy1 = new Enemy(-100, 60);
+let enemy2 = new Enemy(-100, 145);
+let enemy3 = new Enemy(-100, 230);
 
 let allEnemies = [enemy1, enemy2, enemy3];
