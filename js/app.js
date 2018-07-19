@@ -1,14 +1,18 @@
 // Enemies our player must avoid
 class Enemy {
-  constructor(x, y) {
+  constructor(x, y, speed) {
     this.sprite = "images/enemy-bug.png";
     this.x = x;
     this.y = y;
+    this.speed = speed;
   }
 
   update(dt) {
-    //
-
+    if (this.x < 400) {
+      this.x += this.speed * dt;
+    } else if (this.x >= 400) {
+      this.x = 0;
+    }
   }
 
   render() {
@@ -16,7 +20,6 @@ class Enemy {
   }
 
   reset() {
-
   }
 }
 
@@ -28,7 +31,9 @@ class Player {
   }
 
   update(dt) {
+    for (let i = 0; i < allEnemies.length; i++) {
 
+    }
   }
 
   render() {
@@ -74,8 +79,11 @@ document.addEventListener('keyup', function(e) {
 });
 
 let player = new Player();
-let enemy1 = new Enemy(-100, 60);
-let enemy2 = new Enemy(-100, 145);
-let enemy3 = new Enemy(-100, 230);
+let enemy1 = new Enemy(0, 60, 200);
+let enemy2 = new Enemy(0, 60, 75);
+let enemy3 = new Enemy(0, 145, 100);
+let enemy4 = new Enemy(0, 230, 50);
+let enemy5 = new Enemy(0, 230, 150);
 
-let allEnemies = [enemy1, enemy2, enemy3];
+
+let allEnemies = [enemy1, enemy2, enemy3, enemy4, enemy5];
