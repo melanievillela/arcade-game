@@ -1,3 +1,7 @@
 body {
     text-align: center;
 }
+
+#modal {
+  transform: translateY(-100px);
+}

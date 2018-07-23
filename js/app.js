@@ -23,6 +23,7 @@ class Enemy {
   }
 }
 
+//Player initial location
 class Player {
   constructor() {
     this.sprite = "images/char-boy.png";
@@ -30,14 +31,20 @@ class Player {
     this.y = 400;
   }
 
+//Check player and enemy collision
   update(dt) {
     for (let enemy of allEnemies) {
-      //if ((Math.round(enemy.x)+70) === player.x || (Math.round(enemy.x)-70) === player.x && Math.round(enemy.y) === player.y) {
-      
-        player.x = 200;
-        player.y = 400;
+      if (Math.round(enemy.y) === player.y) {
+        for (let i = -50; i < 50; i++) {
+          for (let j = -25; j < 25; j++) {
+            if (Math.round(enemy.x) + i === player.x + j) {
+              player.x = 200;
+              player.y = 400;
+          }
+
+          }
+        }
       }
-  //    console.log (Math.round(enemy.x), Math.round(enemy.y))
     }
   }
 
@@ -49,11 +56,11 @@ class Player {
   handleInput(input) {
     if (input === "left") {
       if (this.x >= 100) {
-        this.x -= 100;
+        this.x -= 50;
       }
     } else if (input === "right") {
       if (this.x <= 300) {
-        this.x += 100;
+        this.x += 50;
       }
     } else if (input === "down") {
       if (this.y <= 315) {
@@ -64,6 +71,7 @@ class Player {
         this.y -= 85;
       }
       else if (this.y < 145) {
+        modal();
         this.x = 200;
         this.y = 400;
       }
@@ -83,13 +91,16 @@ document.addEventListener('keyup', function(e) {
     player.handleInput(allowedKeys[e.keyCode]);
 });
 
+let modal = function() {
+  document.getElementById('modal').style.transform = "translateY(0px)";
+}
+
 let player = new Player();
-let enemy1 = new Enemy(0, 60, 200);
-let enemy2 = new Enemy(0, 60, 10);
+let enemy1 = new Enemy(0, 60, 150);
+let enemy2 = new Enemy(0, 60, 50);
 let enemy3 = new Enemy(0, 145, 100);
-let enemy4 = new Enemy(0, 230, 5);
-let enemy5 = new Enemy(0, 230, 150);
+let enemy4 = new Enemy(0, 230, 75);
+let enemy5 = new Enemy(0, 230, 125);
 
-let allEnemies = [enemy2, enemy4];
 
-//let allEnemies = [enemy1, enemy2, enemy3, enemy4, enemy5];
+let allEnemies = [enemy1, enemy2, enemy3, enemy4, enemy5];
