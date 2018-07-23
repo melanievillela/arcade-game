@@ -31,8 +31,13 @@ class Player {
   }
 
   update(dt) {
-    for (let i = 0; i < allEnemies.length; i++) {
-
+    for (let enemy of allEnemies) {
+      //if ((Math.round(enemy.x)+70) === player.x || (Math.round(enemy.x)-70) === player.x && Math.round(enemy.y) === player.y) {
+      
+        player.x = 200;
+        player.y = 400;
+      }
+  //    console.log (Math.round(enemy.x), Math.round(enemy.y))
     }
   }
 
@@ -80,10 +85,11 @@ document.addEventListener('keyup', function(e) {
 
 let player = new Player();
 let enemy1 = new Enemy(0, 60, 200);
-let enemy2 = new Enemy(0, 60, 75);
+let enemy2 = new Enemy(0, 60, 10);
 let enemy3 = new Enemy(0, 145, 100);
-let enemy4 = new Enemy(0, 230, 50);
+let enemy4 = new Enemy(0, 230, 5);
 let enemy5 = new Enemy(0, 230, 150);
 
+let allEnemies = [enemy2, enemy4];
 
-let allEnemies = [enemy1, enemy2, enemy3, enemy4, enemy5];
+//let allEnemies = [enemy1, enemy2, enemy3, enemy4, enemy5];
