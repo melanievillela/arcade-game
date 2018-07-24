@@ -55,11 +55,11 @@ class Player {
 //Move player depending on keypresses
   handleInput(input) {
     if (input === "left") {
-      if (this.x >= 100) {
+      if (this.x >= 50) {
         this.x -= 50;
       }
     } else if (input === "right") {
-      if (this.x <= 300) {
+      if (this.x <= 350) {
         this.x += 50;
       }
     } else if (input === "down") {
@@ -91,8 +91,12 @@ document.addEventListener('keyup', function(e) {
     player.handleInput(allowedKeys[e.keyCode]);
 });
 
+//Win modal
 let modal = function() {
-  document.getElementById('modal').style.transform = "translateY(0px)";
+  document.getElementById("modal").style.transform = "translateY(0px)";
+  document.getElementById("exit").addEventListener("click", function() {
+    document.getElementById("modal").style.transform = "translateY(-150px)";
+  });
 }
 
 let player = new Player();
