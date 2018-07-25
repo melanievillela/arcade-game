@@ -1,22 +1,37 @@
-// Enemies our player must avoid
-class Enemy {
-  constructor(x, y, speed) {
-    this.sprite = "images/enemy-bug.png";
+"use strict";
+
+//Main class for the player and enemy to be based off
+class Character {
+  //Location on screen and image location
+  constructor(x, y, sprite) {
     this.x = x;
     this.y = y;
-    this.speed = speed;
-  }
-
-  update(dt) {
-    if (this.x < 400) {
-      this.x += this.speed * dt;
-    } else if (this.x >= 400) {
-      this.x = 0;
-    }
+    this.sprite = sprite;
   }
 
   render() {
     ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
+  }
+
+  update(dt) {
+  }
+
+}
+
+// Enemies our player must avoid
+class Enemy extends Character {
+  constructor(x, y, speed, sprite) {
+    super(x, y);
+    this.speed = speed;
+    this.sprite = "images/enemy-bug.png";
+  }
+
+  update(dt) {
+    if (this.x < 500) {
+      this.x += this.speed * dt;
+    } else if (this.x >= 400) {
+      this.x = -100;
+    }
   }
 
   reset() {
@@ -24,32 +39,26 @@ class Enemy {
 }
 
 //Player initial location
-class Player {
-  constructor() {
+class Player extends Character {
+  constructor(x, y, sprite) {
+    super(x, y);
     this.sprite = "images/char-boy.png";
-    this.x = 200;
-    this.y = 400;
   }
 
 //Check player and enemy collision
   update(dt) {
     for (let enemy of allEnemies) {
-      if (Math.round(enemy.y) === player.y) {
+      if (Math.round(enemy.y) === this.y) {
         for (let i = -50; i < 50; i++) {
           for (let j = -25; j < 25; j++) {
-            if (Math.round(enemy.x) + i === player.x + j) {
-              player.x = 200;
-              player.y = 400;
-          }
-
+            if (Math.round(enemy.x) + i === this.x + j) {
+              this.x = 200;
+              this.y = 400;
+            }
           }
         }
       }
     }
-  }
-
-  render() {
-    ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
   }
 
 //Move player depending on keypresses
@@ -93,13 +102,13 @@ document.addEventListener('keyup', function(e) {
 
 //Win modal
 let modal = function() {
-  document.getElementById("modal").style.transform = "translateY(0px)";
-  document.getElementById("exit").addEventListener("click", function() {
-    document.getElementById("modal").style.transform = "translateY(-150px)";
+  document.querySelector(".modal").style.transform = "translateY(0px)";
+  document.querySelector(".exit").addEventListener("click", function() {
+    document.querySelector(".modal").style.transform = "translateY(-150px)";
   });
 }
 
-let player = new Player();
+let player = new Player(200, 400);
 let enemy1 = new Enemy(0, 60, 150);
 let enemy2 = new Enemy(0, 60, 50);
 let enemy3 = new Enemy(0, 145, 100);

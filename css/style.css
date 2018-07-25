@@ -2,23 +2,20 @@ body {
     text-align: center;
 }
 
-div {
-  margin: 0 auto;
-  display: flex;
-  flex-direction: column;
-  width: 250px;
-}
-
 h1 {
   margin: 0;
 }
 
-#modal {
+.modal {
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  width: 250px;
   transform: translateY(-100px);
   font-family: 'Chela One', cursive;
 }
 
-#exit {
+.exit {
   align-self: flex-end;
   padding: 10px 10px;
 }
