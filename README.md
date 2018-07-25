@@ -1,6 +1,9 @@
 # Introduction:
 This game is based off the classic game of Frogger. To learn more about Frogger click [HERE](https://en.wikipedia.org/wiki/Frogger)
 
+# Game Load:
+To load the game simple open the index.html in any internet browser.
+
 # Game Play:
 Move the arrow keys to move the player. The player can move up, down, left or right. The player is limited to moving within the game board.
 If the player comes into contact with any roaches he will be moved back to his original position at the bottom of the board.
